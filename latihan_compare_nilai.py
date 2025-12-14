@@ -6,7 +6,7 @@ nilai_inggris = [85, 80, 90, 70, 75]
 nilai_fisika = [90, 85, 80, 95, 70]
 total_nilai_siswa = []
 
-
+a=0
 
 for i in range( len(absen_siswa)):
     total= (nilai_mtk[i] + nilai_bindo[i] + nilai_inggris[i] + nilai_fisika[i])
