@@ -60,23 +60,3 @@ print(f"Total nilai terkecil adalah: {nilai_terkecil} milik absen nomor: {absen_
 
 
 
-# nilai_terbesar = nilai_mtk[0]
-# for i in range( 1, len(nilai_mtk)):
-#     right_pointer = nilai_mtk[i]
-#     absen_pointer = absen[i]
-#     siswa_pointer = siswa[i]
-#     nilai_ovr=[]
-#    #mencari nilai terbesar
-#     if right_pointer > nilai_terbesar:
-#         nilai_terbesar = right_pointer
-#         absen_terbesar = absen_pointer
-#         siswa_terbesar = siswa_pointer
-#     #mencari nilai terkecil
-#     elif right_pointer < nilai_terbesar:
-#         nilai_terkecil = right_pointer
-#         absen_terkecil = absen_pointer
-#         siswa_terkecil = siswa_pointer
-#     #Mencari nilai sama
-
-# print(f"Nilai terbesar adalah: {nilai_terbesar} milik absen nomor: {absen_terbesar} yaitu {siswa_terbesar}" )
-# print(f"Nilai terkecil adalah: {nilai_terkecil} milik absen nomor: {absen_terkecil} yaitu {siswa_terkecil}" )
