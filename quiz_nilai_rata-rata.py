@@ -7,3 +7,13 @@ for i in range(len(var_array)):
 
 rata_rata=jumlah/len(var_array)
 print(f"Rata-rata dari 0 sampai 100 adalah: {rata_rata}")
+
+
+var_arr= [0 for i in range(10)]
+print(var_arr)
+
+
+baris= input("Masukan besar baris matriks: ")
+kolom= input("Masukan besar kolom matriks: ")
+matriks=[[0 for i in range(int(baris))] for j in range(int(kolom))]
+print(matriks)
