@@ -1,3 +1,21 @@
+
+from fractions import Fraction
+
+var_mat = [
+    [1, 3, 5],
+    [4, 9, -8],
+    [3, 2, 7]
+]
+
+
+#FIND DETERMINANT 3x3 MATRIX
+tambah= var_mat[0][0] * var_mat[1][1] * var_mat[2][2]+ var_mat[0][1] * var_mat[1][2] * var_mat[2][0]+ var_mat[0][2] * var_mat[1][0] * var_mat[2][1]
+kurang= var_mat[0][2] * var_mat[1][1] * var_mat[2][0]+ var_mat[0][0] * var_mat[1][2] * var_mat[2][1]+ var_mat[0][1] * var_mat[1][0] * var_mat[2][2]
+det= tambah - kurang
+# print(det)
+
+
+
 #TRANSPOSE MATRIX
 var_t=[[0 for i in range(len(var_mat))] for j in range(len(var_mat))]
 

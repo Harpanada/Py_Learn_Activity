@@ -13,7 +13,3 @@ var_arr= [0 for i in range(10)]
 print(var_arr)
 
 
-baris= input("Masukan besar baris matriks: ")
-kolom= input("Masukan besar kolom matriks: ")
-matriks=[[0 for i in range(int(baris))] for j in range(int(kolom))]
-print(matriks)
