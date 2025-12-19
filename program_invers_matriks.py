@@ -2,59 +2,69 @@
 from fractions import Fraction
 
 var_mat = [
-    [1, 3, 5],
-    [4, 9, -8],
-    [3, 2, 7]
+    [1, 2, 2],
+    [2, 4, 3],
+    [4, 7, 8]
 ]
 
 
 #FIND DETERMINANT 3x3 MATRIX
-tambah= var_mat[0][0] * var_mat[1][1] * var_mat[2][2]+ var_mat[0][1] * var_mat[1][2] * var_mat[2][0]+ var_mat[0][2] * var_mat[1][0] * var_mat[2][1]
-kurang= var_mat[0][2] * var_mat[1][1] * var_mat[2][0]+ var_mat[0][0] * var_mat[1][2] * var_mat[2][1]+ var_mat[0][1] * var_mat[1][0] * var_mat[2][2]
-det= tambah - kurang
-# print(det)
+def determinant_3x3(mat):
+    tambah = (
+        mat[0][0]*mat[1][1]*mat[2][2]
+        + mat[0][1]*mat[1][2]*mat[2][0]
+        + mat[0][2]*mat[1][0]*mat[2][1]
+    )
+    kurang = (
+        mat[0][2]*mat[1][1]*mat[2][0]
+        + mat[0][0]*mat[1][2]*mat[2][1]
+        + mat[0][1]*mat[1][0]*mat[2][2]
+    )
+    return tambah - kurang
+
+#FIND COFACTOR MATRIX
+def minor(mat, row, col):
+    return [
+        [mat[i][j] for j in range(3) if j != col]
+        for i in range(3) if i != row
+    ]
+def det2x2(m):
+    return m[0][0]*m[1][1] - m[0][1]*m[1][0]
 
 
-
-#TRANSPOSE MATRIX
-var_t=[[0 for i in range(len(var_mat))] for j in range(len(var_mat))]
-
-for i in range(len(var_mat)):
-    # print(i)
-    for j in range(len(var_mat)):
-        # print(j)
-        # print( var_mat[i])
-        # print(var_mat[j])
-        # print(var_mat[j][i], end=" ")
-        var_t[i][j]= var_mat[j][i]
- 
-
-
- #FIND ADJOIN MATRIX
 rules= [[1,-1,1],
         [-1,1,-1],
         [1,-1,1]]
 
-var_adjoin=[[0 for i in range(len(var_mat))] for j in range(len(var_mat))]
+kof=[[0 for i in range(len(var_mat))] for j in range(len(var_mat))]
+for row in range(len(var_mat)):
+    for col in range(len(var_mat)):
+       minor_matrix = minor(var_mat, row, col)
+       kof[row][col]=det2x2(minor_matrix)*rules[row][col]
+       
+
+#ADJOIN MATRIX
+adjoin=[[0 for i in range(len(var_mat))] for j in range(len(var_mat))]
+
 for i in range(len(var_mat)):
     for j in range(len(var_mat)):
-        var_adjoin[i][j]= var_t[i][j] * rules[i][j]
+       
+        adjoin[i][j]= kof[j][i]
 
 
 
-#FIND INVERSE MATRIX
+# INVERS MATRIX
 var_inv=[[0 for i in range(len(var_mat))] for j in range(len(var_mat))]
 for i in range(len(var_mat)):
     for j in range(len(var_mat)):
-        var_inv[i][j]= Fraction(1, det).limit_denominator() * var_adjoin[i][j]
+        var_inv[i][j]= Fraction(1, determinant_3x3(var_mat)).limit_denominator() * adjoin[i][j]
+
 
 
 print("Matriks awal:")
 print(var_mat)
-print("Matriks Transpose:")
-print(var_t)
 print("Matriks Adjoin:")
-print(var_adjoin)
+print(adjoin)
 print("Matriks Inverse:")
 print([[str(var_inv[i][j]) for j in range(len(var_mat))] for i in range(len(var_mat))])
 
