@@ -59,6 +59,3 @@ print(f"\n")
 for i in range(len(siswa)):
     print(InfoNya(Nama=siswa[i],Usia=usia[i],Hobbi=hobi[i]))
 
-x= lambda a,b: a+b
-
-print(x(2,3))
