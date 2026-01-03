@@ -23,39 +23,78 @@
 # nixie.showData()
 # vans.showData()
 
+import unittest
+
+
+
+
+
+
 
 
 #Super Usage
 class Mobil:
-    def __init__(self, warna, merek, kecepatan):
+    def __init__(self, warna, merek, kecepatan,hambatan_udara):
         self.warna = warna
         self.merek = merek
         self.kecepatan = kecepatan
-    
+        self.hambatan_udara = hambatan_udara
+
     def tambah_kecepatan(self):     # tambah_kecepatan
         self.kecepatan += 10
     
     def info(self):
         print(f"Kondisi Jalan: Licin. Kecepatan Mobil: {self.kecepatan} km/h. Kecepatan Disarankan: 60 km/h. ")
 
+
+def aeroDynamicStatus(AeroAct):
+    if AeroAct:
+        print("[Aerodynamic Actived]")
+    else:
+        print("[Aerodynamic Deactived]")
+
+def turboStatus(TurboAct):
+    if TurboAct:
+        print("[Turbo Actived]")
+    else:
+        print("[Turbo Deactived]")
+
+
+
+
 class MobilSport(Mobil):
+
+
     def turbo(self):
         self.kecepatan += 50
-    
-    def tambah(self):     # tambah_kecepatan
+        
+     #tambah_kecepatan
+    def tambah(self):  
         print("Kecepatan ditingkatkan, hati-hati!")
         #Super, for call a method from parent class
-        super().info()  # Memanggil metode info dari kelas induk
-        super().tambah_kecepatan()  # Memanggil metode dari kelas induk
+        super().tambah_kecepatan()  #Memanggil metode dari kelas induk
 
-# Kelas Mobil Sport
-mobil_sport_1 = MobilSport("Hitam", "DicodingSportCar", 160)
-print(mobil_sport_1.kecepatan)
-mobil_sport_1.tambah()     # Memanggil metode baru tambah kecepatan()
-print(mobil_sport_1.kecepatan)
+    def aeroDynamic(self):
+        efect=self.hambatan_udara - 5
+        return efect
+        
 
-"""
-Output:
-160
-180
-"""
+
+
+class TestMobilSport(unittest.TestCase):
+    #Test case 1
+    def test_turbo(self):
+        carTester=MobilSport("Merah","AstonMartin",250,10)
+        carTester.turbo()
+        self.assertEqual(carTester.kecepatan,300)
+
+    def test_aeroDynamic(self):
+        carTester=MobilSport("Merah","AstonMartin",250,10)
+        self.assertNotEqual(carTester.aeroDynamic(),carTester.hambatan_udara)
+        
+
+
+
+if __name__ == "__main__":
+    # Test Runner
+    unittest.main()
