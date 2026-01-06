@@ -1,11 +1,7 @@
-
 from fractions import Fraction
+import numpy
 
-var_mat = [
-    [1, 2, 2],
-    [2, 4, 3],
-    [4, 7, 8]
-]
+var_mat = numpy.array([[1,4,3],[4,5,10],[7,3,9]])
 
 
 #FIND DETERMINANT 3x3 MATRIX
