@@ -1,6 +1,7 @@
 import pandas as pd
 from datetime import date
 
+
 data={
     'Name': ['Toyaa','Christy','Cathleen','Nixie'],
     'Date of Birth': [date(2005,12,5), date(2005,11,20), date(2009,5,28), date(2009,5,13)],
@@ -29,3 +30,4 @@ data_final = {
 #Example of Use Pandas as table/data frame maker
 data_frame=pd.DataFrame(data_final)
 print(data_frame)
+
