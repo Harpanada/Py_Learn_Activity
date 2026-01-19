@@ -1,30 +1,43 @@
 import pandas as pd
 
 #loading dataset -> csv
-train=pd.read_csv("F:/house-prices-advanced-regression-techniques/train.csv")
+dirty_data=pd.read_csv("F:/house-prices-advanced-regression-techniques/train.csv")
 # train.info()
 # print(train.describe(include="all"))
 
 
 #MENGATASI MISSING VALUES
-missing_values = train.isnull().sum()
+missing_values = dirty_data.isnull().sum()
 less = missing_values[missing_values < 1000].index
 over = missing_values[missing_values >= 1000].index
 
 
 #MISSING VALUES DI TIPE DATA NUMERIK
 #Mengambil feature yg punya tipe data number
-numeric_data= train[less].select_dtypes(include=['number']).columns
+numeric_data= dirty_data[less].select_dtypes(include=['number']).columns
 
 #Mengisi missing values dengan median(Nilai Tengah)
-train[numeric_data]=train[numeric_data].fillna(train[numeric_data].median())
+dirty_data[numeric_data]=dirty_data[numeric_data].fillna(dirty_data[numeric_data].median())
 
 
 #MISSING VALUES DI TIPE DATA KATEGORIKAL
-kategorical_features = train[less].select_dtypes(include=['object']).columns
- 
-for column in kategorical_features:
-    train[column] = train[column].fillna(train[column].mode()[0])
+kategorical_features = dirty_data[less].select_dtypes(include=['object']).columns
 
-x=train.isna().sum().sort_values(ascending=False).head(20)
-print(x)
+#Isi missing values kategorikal dengan modus (nilai yang paling sering muncul)
+for column in kategorical_features:
+    dirty_data[column] = dirty_data[column].fillna(dirty_data[column].mode()[0])
+
+# #Isi missing values kategorikal dengan string "missing"
+# for miss in kategorical_features:
+#     train[miss] = train[miss].fillna("missing")
+
+
+#Menghapus over missing values
+clean_data= dirty_data.drop(columns=over)
+
+
+# #Check Apakah masih ada missing values atau tidak.
+# x=clean_data.isna().sum().sort_values(ascending=False).head(20)
+# print(x)
+# missing_values = clean_data.isnull().sum()
+# print(missing_values[missing_values > 0])
